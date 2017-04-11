@@ -23,7 +23,7 @@ int main()
 
 	for (int i = 0; i < 100; i++)
 	{
-		gameRoom(player1(choicePlayer1), player1 (choicePlayer1));
+		gameRoom(player1(choicePlayer1), player2 (choicePlayer1));
 	}
 
 	std::system("pause");
@@ -32,60 +32,78 @@ int main()
 
 int player1(int choicePlayer)
 {
-	srand(time(NULL));
-	choicePlayer = rand() % 3;
-
+	std::cout << std::endl;
+	std::cout << "Your move gringo..." << std::endl;
+	std::cout << "0 - scissors, 1 - paper, 2 - rock: ";
+	std::cin >> choicePlayer;
 	return choicePlayer;
 
 }
 int player2(int choicePlayer)
 {
-	srand(time(NULL));
+	srand(time(NULL)); // adding this line created issue where all results are shown as draw
 	choicePlayer = rand() % 3;
-
+	
+	
 	return choicePlayer;
-
 }
 void gameRoom(int choicePlayer1, int choicePlayer2)
 {
+	static int  computerScore = 0, humanScore = 0;
 
-	if (choicePlayer1 > choicePlayer2)
+	if (choicePlayer1 == 0 && choicePlayer2 == 0)
 	{
-		if (choicePlayer1 == 0)
-		{	
-			std::cout << "Player 1 = Scisors WON" << std::endl;
-
-		}
-		if (choicePlayer1 == 1)
-		{
-			std::cout << "Player 1 = Paper WON" << std::endl;
-
-		}
-		else
-		{
-			std::cout << "Player 1 = Rock WON" << std::endl;
-		}
+		std::cout << "Computer Scissors - Human Scissors" << std::endl;
+		std::cout << "This is a Draw" << std::endl;
+		std::cout << "Score - Human: " << humanScore << " Computer: " << computerScore << std::endl;
 	}
-	if (choicePlayer1 < choicePlayer2)
+	if (choicePlayer1 == 0 && choicePlayer2 == 1)
 	{
-		if (choicePlayer2 == 0)
-		{
-			std::cout << "Player 2 = Scisors WON" << std::endl;
-
-		}
-		if (choicePlayer2 == 1)
-		{
-			std::cout << "Player 2 = Paper WON" << std::endl;
-
-		}
-		else
-		{
-			std::cout << "Player 2 = Rock WON" << std::endl;
-		}
+		std::cout << "Computer Paper - Human Scissors" << std::endl;
+		std::cout << "Human WON!" << std::endl;
+		std::cout << "Score - Human: " << ++humanScore << " Computer: " << computerScore << std::endl;
 	}
-	else
+	if (choicePlayer1 == 0 && choicePlayer2 == 2)
 	{
-		std::cout << "Draw " << std::endl;
+		std::cout << "Computer Rock - Human Scissors" << std::endl;
+		std::cout << "Computer WON!" << std::endl;
+		std::cout << "Score - Human: " << humanScore << " Computer: " << ++computerScore << std::endl;
+	}
+	if (choicePlayer1 == 1 && choicePlayer2 == 0)
+	{
+		std::cout << "Computer Scissors - Human Paper" << std::endl;
+		std::cout << "Computer WON!" << std::endl;
+		std::cout << "Score - Human: " << humanScore << " Computer: " << ++computerScore << std::endl;
+	}
+	if (choicePlayer1 == 1 && choicePlayer2 == 1)
+	{
+		std::cout << "Computer Paper - Human Paper" << std::endl;
+		std::cout << "This is a Draw" << std::endl;
+		std::cout << "Score - Human: " << humanScore << " Computer: " << computerScore << std::endl;
+	}
+	if (choicePlayer1 == 1 && choicePlayer2 == 2)
+	{
+		std::cout << "Computer Rock - Human Paper" << std::endl;
+		std::cout << "Human WON!" << std::endl;
+		std::cout << "Score - Human: " << ++humanScore << " Computer: " << computerScore << std::endl;
+	}
+	if (choicePlayer1 == 2 && choicePlayer2 == 0)
+	{
+		std::cout << "Computer Scissors - Human Rock" << std::endl;
+		std::cout << "Human WON!" << std::endl;
+		std::cout << "Score - Human: " << ++humanScore << " Computer: " << computerScore << std::endl;
+	}
+	if (choicePlayer1 == 2 && choicePlayer2 == 1)
+	{
+		std::cout << "Computer Paper - Human Rock" << std::endl;
+		std::cout << "Computer WON!" << std::endl;
+		std::cout << "Score - Human: " << humanScore << " Computer: " << ++computerScore << std::endl;
+	}
+	if (choicePlayer1 == 2 && choicePlayer2 == 2)
+	{
+		std::cout << "Computer Rock - Human Rock" << std::endl;
+		std::cout << "This is a Draw" << std::endl;
+		std::cout << "Score - Human: " << humanScore << " Computer: " << computerScore << std::endl;
 	}
 
 }
